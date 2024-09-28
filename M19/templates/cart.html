@@ -1,0 +1,21 @@
+{% extends 'menu.html' %}
+
+{% block page_name %}
+    {{block.super}}
+{% endblock %}
+
+{% block page_menu %}
+    {{block.super}}
+{% endblock %}
+
+{% block page_content %}
+    {{block.super}}
+    <h1>
+        Извините, Ваша корзина пуста
+    </h1>
+    <button>
+        <a href="/platform">
+            Вернуться обратно
+        </a>
+    </button>
+{% endblock %}
