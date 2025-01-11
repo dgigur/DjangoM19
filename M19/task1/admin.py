@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import Buyer, Game
+from .models import Buyer, Game, News
 
 # Register your models here.
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'content', 'data')
 
 
 @admin.register(Game)

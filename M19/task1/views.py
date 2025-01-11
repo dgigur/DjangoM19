@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import UserRegister
 from .models import *
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -68,3 +69,15 @@ def sign_up_by_django(request):
             return render(request, 'registration_page.html', context)
     form = UserRegister()
     return render(request, 'registration_page.html', {'form': form})
+
+
+def news(request):
+    all_news = News.objects.all().order_by('data')
+    per_page = request.GET.get('per_page', 3)
+    paginator = Paginator(all_news, per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'news.html', context)
